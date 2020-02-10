@@ -26,10 +26,8 @@ namespace LibraryTerminal
                 {
 
                     case "1":
-                        Console.WriteLine("Here is our selection of books! ");
                         DisplayBooks();
-                        //string checkoutResponse = GetUserInput("Select what book you want to checkout \n");
-                        //Console.WriteLine(GetCheckout(checkoutResponse));
+                        Console.WriteLine("Here is information about our selection of books! ");
                         UserContinue();
                         break;
                     case "2":
@@ -58,16 +56,21 @@ namespace LibraryTerminal
                         break;
                     case "5":
                         DisplayBooks();
-                        string checkoutResponse2 = GetUserInput("Select what book you want to checkout \n");
-                        //string checkoutSelection = Getcheckout(response);
-                        Console.WriteLine(GetCheckout(checkoutResponse2));
-                        //CheckOutStatus();
+                        string checkoutResponse = GetUserInput("Select what book you want to checkout? \n ");
+                        int index = int.Parse(checkoutResponse) - 1;
+                        Book.Books[index].CheckOut();
                         UserContinue();
-                        //string checkingOut = GetUserInput("This will be checked out! ");
                         // display ALL books
                         // Call Display of All Books Method
                         break;
                     case "6":
+                        DisplayBooks();
+                        string checkinResponse = GetUserInput("Select what book you want to checkout? \n ");
+                        int checkinIndex = int.Parse(checkinResponse) - 1;
+                        Book.Books[checkinIndex].CheckIn();
+                        UserContinue();
+                        break;
+                    case "7":
                     case "exit":
                         //Getting kicked out!
                         Environment.Exit(0);
@@ -87,7 +90,7 @@ namespace LibraryTerminal
         }
         public static void DisplayMenu()
         {
-            Console.WriteLine("[1]: Display All Books in the Super Duper Library");
+            Console.WriteLine("[1]: Display All information of the books in the Super Duper Library ");
             //Console.WriteLine("=================================================================");
 
             Console.WriteLine("[2]: Display Books by Genre from the Super Duper Library ");
@@ -102,8 +105,11 @@ namespace LibraryTerminal
             Console.WriteLine("[5]: Lets checkout some books at the Super Duper Library ");
             //Console.WriteLine("=================================================================");
 
-            Console.WriteLine("[6]: Now leaving the Super Duper Library ");
-           //Console.WriteLine("=================================================================");
+            Console.WriteLine("[6]: Lets check-in books back into the Super Duper Library ");
+            //Console.WriteLine("=================================================================");
+
+            Console.WriteLine("[7]: Now leaving the Super Duper Library ");
+            //Console.WriteLine("=================================================================");
 
         }
         public static void DisplayBooks()
@@ -119,12 +125,15 @@ namespace LibraryTerminal
 
                 if (book.Status == true)
                 {
-                    Console.WriteLine($" Status: on Shelf \n");
+                    Console.WriteLine($"Status: on Shelf \n");
                     //Console.WriteLine("=================================================================");
                 }
                 else
                 {
-                    Console.WriteLine($"Status: checked out \n");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Status: checked out ");
+                    Console.WriteLine($"The book is due: {book.DueDate.ToShortDateString()} \n");
+                    Console.ResetColor();
                     //Console.WriteLine("=================================================================");
 
                 }

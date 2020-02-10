@@ -53,7 +53,7 @@ namespace LibraryTerminal
         }
         public void CheckIn()
         {
-            //Status = true;
+            Status = true;
             DueDate = DateTime.Now;
         }
 
