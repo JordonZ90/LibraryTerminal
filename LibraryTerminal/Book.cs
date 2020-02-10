@@ -56,12 +56,6 @@ namespace LibraryTerminal
             Status = true;
             DueDate = DateTime.Now;
         }
-
-        // List<Book> Books = new List<Book>();
-        // Book Class: Properties Author, Title, Genre, Status (bool), Due Date (in Datetime)
-        // 12 items, list of books | Lets create a public static list<Books> Books, Keep this within the Book Class
-        // Foreach (Book book in Book(access the class) Books))
-
     }
 }
 

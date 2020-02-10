@@ -6,17 +6,11 @@ namespace LibraryTerminal
     class Program
     {
         static void Main(string[] args)
-        {
-            //Book.Books[0].CheckOut(); // 
-            //Console.WriteLine(Book.Books[0].DueDate);
-
-            //Book.Books[0].CheckIn();
-            //Console.WriteLine(Book.Books[0].DueDate);
+        {          
 
             Console.WriteLine("This is a Super Duper Library! \n");
 
             DisplayMenu();
-
 
             while (true)
             {
@@ -26,59 +20,58 @@ namespace LibraryTerminal
                 {
 
                     case "1":
+                        // Displaying information of all books
                         DisplayBooks();
                         Console.WriteLine("Here is information about our selection of books! ");
                         UserContinue();
                         break;
                     case "2":
+                        //displaying all Genres 
                         DisplayGenres();
                         string response = GetUserInput("Select a genre: ");
                         string selection = GetGenre(response);
                         DisplayBooksByGenre(selection);
                         UserContinue();
-                        // display books by Genre
-                        // Display books by Genre Method
                         break;
                     case "3":
+                        //Displaying books by specific author
                         SearchByAuthor();
                         string authorResponse = GetUserInput("Select an Author: ");
-                        //string authorSelection = GetAuthor(authorResponse);
                         Console.WriteLine(GetAuthor(authorResponse));
                         UserContinue();
-                        //Display books by Author
-                        //Display books by Author Method
                         break;
                     case "4":
+                        //Displaying only titles in the library
                         DisplayTitle();
                         UserContinue();
-                        // Display books by Title
-                        //Display books by Title Method
                         break;
                     case "5":
+                        //displaying all books, also checking out books
                         DisplayBooks();
                         string checkoutResponse = GetUserInput("Select what book you want to checkout? \n ");
                         int index = int.Parse(checkoutResponse) - 1;
                         Book.Books[index].CheckOut();
+                        Console.WriteLine("You've checked out a book! ");
                         UserContinue();
-                        // display ALL books
-                        // Call Display of All Books Method
                         break;
                     case "6":
+                        //displaying all books, also checking in books
                         DisplayBooks();
-                        string checkinResponse = GetUserInput("Select what book you want to checkout? \n ");
+                        string checkinResponse = GetUserInput("Select what book you want to checkin? \n ");
                         int checkinIndex = int.Parse(checkinResponse) - 1;
                         Book.Books[checkinIndex].CheckIn();
+                        Console.WriteLine("You've checked in a book! ");
                         UserContinue();
                         break;
                     case "7":
-                    case "exit":
-                        //Getting kicked out!
+                        //Exit the menu
+                    case "exit":                        
                         Environment.Exit(0);
+                        Console.WriteLine("Now leaving the Super Duper Library ");
                         break;
                     default:
-                        // Keep looping
+                        
                         break;
-
                 }
             }
         }
@@ -91,26 +84,25 @@ namespace LibraryTerminal
         public static void DisplayMenu()
         {
             Console.WriteLine("[1]: Display All information of the books in the Super Duper Library ");
-            //Console.WriteLine("=================================================================");
+            
 
             Console.WriteLine("[2]: Display Books by Genre from the Super Duper Library ");
-           //Console.WriteLine("=================================================================");
+           
 
             Console.WriteLine("[3]: Display Books by Author from the Super Duper Library ");
-            //Console.WriteLine("=================================================================");
+            
 
             Console.WriteLine("[4]: Display Books by Title in the Super Duper Library ");
-            //Console.WriteLine("=================================================================");
+            
 
             Console.WriteLine("[5]: Lets checkout some books at the Super Duper Library ");
-            //Console.WriteLine("=================================================================");
+            
 
             Console.WriteLine("[6]: Lets check-in books back into the Super Duper Library ");
-            //Console.WriteLine("=================================================================");
+            
 
             Console.WriteLine("[7]: Now leaving the Super Duper Library ");
-            //Console.WriteLine("=================================================================");
-
+            
         }
         public static void DisplayBooks()
         {
@@ -120,13 +112,13 @@ namespace LibraryTerminal
                 Console.WriteLine($"[{count}] Title: {book.Title}");
                 Console.WriteLine($"Author: {book.Author}");
                 Console.WriteLine($"Genre: {book.Genre}");
-                //Console.WriteLine("=================================================================");
+                
                 count++;
 
                 if (book.Status == true)
                 {
                     Console.WriteLine($"Status: on Shelf \n");
-                    //Console.WriteLine("=================================================================");
+                    
                 }
                 else
                 {
@@ -134,8 +126,7 @@ namespace LibraryTerminal
                     Console.WriteLine($"Status: checked out ");
                     Console.WriteLine($"The book is due: {book.DueDate.ToShortDateString()} \n");
                     Console.ResetColor();
-                    //Console.WriteLine("=================================================================");
-
+                    
                 }
             }
         }
@@ -154,9 +145,8 @@ namespace LibraryTerminal
             {
                 Console.WriteLine($"[{ count}] {title} ");
                 count++;
-                //Console.WriteLine("=================================================================");
+                
             }
-
         }
         public static void DisplayGenres()
         {
@@ -174,7 +164,7 @@ namespace LibraryTerminal
             {
                 Console.WriteLine($"[{ count}] {genre}");
                 count++;
-                //Console.WriteLine("=================================================================");
+                
             }
         }
         public static void DisplayBooksByGenre(string selection)
@@ -185,9 +175,7 @@ namespace LibraryTerminal
                 {
                     Console.WriteLine($"The title of the book is: {book.Title}\n The author of the book is: {book.Author}\n The genre of the book is: " +
                         $"{book.Genre}\n The status of the book is: {book.Status}\n");
-                    //Console.WriteLine("=================================================================");
-                    //Console.WriteLine(book.Genre);
-                    //Console.WriteLine(book.Status);
+
                 }
             }
         }
@@ -214,7 +202,7 @@ namespace LibraryTerminal
                 Console.WriteLine("Invalid selection! ");
                 response = GetUserInput("Selection Genre: ");
 
-                return GetGenre(response); // retuning the method within itself
+                return GetGenre(response); 
             }
         }
         public static void SearchByAuthor()
@@ -234,7 +222,6 @@ namespace LibraryTerminal
             {
                 Console.WriteLine($"[{count}] {author}");
                 count++;
-                //Console.WriteLine("=================================================================");
             }
         }
         public static string GetAuthor(string authorResponse)
@@ -301,7 +288,7 @@ namespace LibraryTerminal
                         DisplayMenu();
                         break;
                     case "n":
-                        Console.WriteLine("Cya later alligator!");
+                        Console.WriteLine("Cya later alligator! ");
                         Environment.Exit(0);
                         break;
                     default:
@@ -314,96 +301,62 @@ namespace LibraryTerminal
         public static string GetCheckout(string checkoutResponse)
         {
 
-            if (checkoutResponse == "1")// || checkoutResponse == "The Hobbit")
+            if (checkoutResponse == "1")
             {
                 return "The Hobbit";
 
             }
-            else if (checkoutResponse == "2")// || checkoutResponse == "The Fellowship of The Ring")
+            else if (checkoutResponse == "2")
             {
                 return "The Fellowship of The Ring";
             }
-            else if (checkoutResponse == "3")// || checkoutResponse == "The Stand")
+            else if (checkoutResponse == "3")
             {
                 return "The Stand";
             }
-            else if (checkoutResponse == "4")// || checkoutResponse == "The Handmaid's Tale")
+            else if (checkoutResponse == "4")
             {
                 return "The Handmaid's Tale";
             }
-            else if (checkoutResponse == "5")// || checkoutResponse == "The Testaments")
+            else if (checkoutResponse == "5")
             {
                 return "The Testaments";
             }
-            else if (checkoutResponse == "6")// || checkoutResponse == "The Road")
+            else if (checkoutResponse == "6")
             {
                 return "The Road";
             }
-            else if (checkoutResponse == "7")// || checkoutResponse == "Cujo")
+            else if (checkoutResponse == "7")
             {
                 return "Cujo";
             }
-            else if (checkoutResponse == "8")// || checkoutResponse == "The Sum of All Fears")
+            else if (checkoutResponse == "8")
             {
                 return "The Sum of All Fears";
             }
-            else if (checkoutResponse == "9")// || checkoutResponse == "The Huner Games")
+            else if (checkoutResponse == "9")
             {
                 return "The Hunger Games";
             }
-            else if (checkoutResponse == "10")// || checkoutResponse == "Harry Potter and the Goblet of Fire")
+            else if (checkoutResponse == "10")
             {
                 return "Harry Potter and the Goblet of Fire";
             }
-            else if (checkoutResponse == "11")// || checkoutResponse == "War of the Worlds")
+            else if (checkoutResponse == "11")
             {
                 return "War of the Worlds";
             }
-            else if (checkoutResponse == "12")// || checkoutResponse == "Brave New World")
+            else if (checkoutResponse == "12")
             {
                 return "Brave New World";
             }
             else
             {
                 Console.WriteLine("Invalid selection! ");
-                checkoutResponse = GetUserInput("Please select a book to checkout!: "); //.ToLower();
+                checkoutResponse = GetUserInput("Please select a book to checkout!: ");
 
-                return GetAuthor(checkoutResponse); // retuning the method within itself
+                return GetAuthor(checkoutResponse); 
             }
         }
-        //public static void CheckOutStatus(string checkingOut)
-        //{
-        //    //int count = 1;
-        //    foreach (Book book in Book.Books)
-        //        if (checkingOut == "Y")
-        //        {
-        //            Console.WriteLine(book.Status == true);
-        //            Console.WriteLine("=================================================================");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine(book.Status == false);
-        //        }
-        //}
-        //public static void CheckOutBook()  'List<>
-        //{
-        //    
-            
-        //    
-        //    Console.WriteLine("Here is our currently");
-        //    int count = 1;
-        //    foreach (Book book in Book.Books)
-        //    {
-        //        if (book.Status == true)
-        //        {
-        
-        //            Console.WriteLine($"{count}: {book.Title}");
-        //            Console.ResetColor();
-        //            count++;
-        //        }
-
-
-        //    }
-        //}
     }
 }
